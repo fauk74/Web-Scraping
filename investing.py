@@ -2,7 +2,12 @@ from selenium import webdriver
 import time
 import pandas as pd
 
-
+#the following options set Chrome to work in headless mode. If the output is not what desired, the headless mode could be disabled in order to verify what happens on the screen!
+chrome_options = Options()
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox") # linux only
+chrome_options.add_argument("--headless")
 
 # at this site you can find info regarding 
 # the installation of selenium drivers for your browser  https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
@@ -15,7 +20,7 @@ chrome_driver_path = "/usr/bin/chromedriver" #default chromedriver as usually se
 
 
 
-driver = webdriver.Chrome(chrome_driver_path)
+driver = webdriver.Chrome(chrome_driver_path, options=chrome_options)
 driver.get("https://www.investing.com/technical/technical-analysis")
 
 
